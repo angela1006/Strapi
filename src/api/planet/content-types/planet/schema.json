@@ -19,6 +19,22 @@
     },
     "descripcion": {
       "type": "text"
+    },
+    "characters": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::character.character",
+      "inversedBy": "planet"
+    },
+    "imagenes": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
     }
   }
 }

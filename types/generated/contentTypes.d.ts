@@ -462,6 +462,7 @@ export interface ApiCharacterCharacter extends Struct.CollectionTypeSchema {
     gender: Schema.Attribute.Enumeration<
       ['Male', 'Female', 'Other', 'Unknown']
     >;
+    imagen: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
     ki: Schema.Attribute.String;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
@@ -471,7 +472,7 @@ export interface ApiCharacterCharacter extends Struct.CollectionTypeSchema {
       Schema.Attribute.Private;
     maxKi: Schema.Attribute.String;
     name: Schema.Attribute.String;
-    originPlanet: Schema.Attribute.String;
+    planet: Schema.Attribute.Relation<'oneToMany', 'api::planet.planet'>;
     publishedAt: Schema.Attribute.DateTime;
     race: Schema.Attribute.Enumeration<
       [
@@ -507,10 +508,15 @@ export interface ApiPlanetPlanet extends Struct.CollectionTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
+    characters: Schema.Attribute.Relation<
+      'manyToOne',
+      'api::character.character'
+    >;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     descripcion: Schema.Attribute.Text;
+    imagenes: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
     isDestroyed: Schema.Attribute.Boolean;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<

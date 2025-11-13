@@ -65,8 +65,21 @@
         "Villain"
       ]
     },
-    "originPlanet": {
-      "type": "string"
+    "planet": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::planet.planet",
+      "mappedBy": "characters"
+    },
+    "imagen": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
     }
   }
 }
